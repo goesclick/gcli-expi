@@ -1,16 +1,19 @@
 module.exports = {
   siteMetadata: {
     title: `Exp.i`,
-    description: ``,
-    author: `@patschreiber`,
+    description: `Expi (Expanded Information) can show extra track information such as BPM, Key, and other interesting metrics, as well as find songs based on the provided data.`,
+    author: `Patrick Schreiber <patrick@goes.click>`,
+    organization: `Goes CLiCK`,
+    siteUrl: `https://expi.goes.click`,
   },
+  polyfill: true,
   plugins: [
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `pages`,
-        path: `${__dirname}/src/pages/`,
+        path: `./src/pages`,
       },
     },
     {
@@ -32,7 +35,7 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gcli-logo.png`, // This path is relative to the root of the site.
+        icon: `./src/images/gcli-logo.png`, // This path is relative to the root of the site.
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
@@ -71,5 +74,12 @@ module.exports = {
       },
     },
     `gatsby-plugin-remove-trailing-slashes`,
+    `gatsby-transformer-yaml`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `./src/data/`,
+      },
+    },
   ],
 }

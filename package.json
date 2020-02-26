@@ -20,11 +20,14 @@
     "gatsby-source-filesystem": "^2.1.46",
     "gatsby-transformer-remark": "^2.6.53",
     "gatsby-transformer-sharp": "^2.3.13",
+    "gatsby-transformer-yaml": "^2.2.25",
+    "node-sass": "^4.13.1",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-helmet": "^5.2.1",
-    "resolve-url-loader": "^3.1.1"
+    "resolve-url-loader": "^3.1.1",
+    "yarn": "^1.22.0"
   },
   "devDependencies": {
     "prettier": "^1.19.1"
@@ -48,9 +51,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/goesclick/gcli-expi"
+    "url": "git+https://github.com/goesclick/gcli-expi.git"
   },
   "bugs": {
     "url": "https://github.com/goesclick/gcli-expi/issues"
-  }
+  },
+  "homepage": "https://github.com/goesclick/gcli-expi#readme",
+  "main": "gatsby-browser.js"
 }
