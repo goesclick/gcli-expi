@@ -29,6 +29,7 @@ module.exports = {
         omitGoogleFont: false,
       },
     },
+    `gatsby-plugin-postcss`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
