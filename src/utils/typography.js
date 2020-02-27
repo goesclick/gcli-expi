@@ -1,0 +1,86 @@
+import Typography from "typography"
+
+const typography = new Typography({
+  title: "Goes.CLiCK",
+  includeNormalize: true,
+  baseFontSize: "13px",
+  baseLineHeight: 1.8,
+  scaleRatio: 3,
+  headerFontFamily: ["Montserrat", "Roboto"],
+  headerWeight: 500,
+  headerGray: 10, // default: 20
+  bodyFontFamily: ["Domine", "Source Serif Pro", "Zilla Slab"],
+  googleFonts: [
+    {
+      name: "Zilla Slab",
+      styles: [
+        "300",
+        "300i",
+        "400",
+        "400i",
+        "500",
+        "500i",
+        "600",
+        "600i",
+        "700",
+        "700i",
+      ],
+    },
+    {
+      name: "Domine",
+      styles: ["400", "700"],
+    },
+    {
+      name: "Source Serif Pro",
+      styles: ["400", "600", "700"],
+    },
+    {
+      name: "Roboto",
+      styles: [
+        "100",
+        "100i",
+        "200",
+        "200i",
+        "300",
+        "300i",
+        "400",
+        "400i",
+        "500",
+        "500i",
+        "600",
+        "600i",
+        "700",
+        "700i",
+        "800",
+        "800i",
+        "900",
+        "700i",
+      ],
+    },
+    {
+      name: "Montserrat",
+      styles: [
+        "100",
+        "100i",
+        "200",
+        "200i",
+        "300",
+        "300i",
+        "400",
+        "400i",
+        "500",
+        "500i",
+        "600",
+        "600i",
+        "700",
+        "700i",
+        "800",
+        "800i",
+        "900",
+        "700i",
+      ],
+    },
+  ],
+})
+
+export default typography

@@ -1,10 +1,16 @@
 module.exports = {
   siteMetadata: {
     title: `Exp.i`,
-    description: `Expi (Expanded Information) can show extra track information such as BPM, Key, and other interesting metrics, as well as find songs based on the provided data.`,
+    description: `Expi (Expanded Information) can show extra track information
+      such as BPM, Key, and other interesting metrics, as well as find songs
+      based on the provided data.`,
     author: `Patrick Schreiber <patrick@goes.click>`,
     organization: `Goes CLiCK`,
-    siteUrl: `https://expi.goes.click`,
+    siteUrl: `https://expi.goes.click`, //TODO: You've hacked your hosts file.
+    additionalResources: {
+      authorPersonalHomepage: `https://patschreiber.com`,
+      organizationSiteUrl: `https://goes.click`,
+    },
   },
   polyfill: true,
   plugins: [
@@ -12,16 +18,15 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `pages`,
-        path: `./src/pages`,
+        name: `images`,
+        path: `${__dirname}/src/images`,
       },
     },
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: `gatsby-plugin-typography`,
       options: {
-        name: `images`,
-        // path: `${__dirname}/src/images`,
-        path: `./src/images`,
+        pathToConfigModule: `src/utils/typography`,
+        omitGoogleFont: false,
       },
     },
     `gatsby-transformer-sharp`,
@@ -29,25 +34,25 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Expi`,
-        short_name: `Expi`,
+        name: `gatsby-starter-default`,
+        short_name: `starter`,
         start_url: `/`,
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `./src/images/gcli-logo.png`, // This path is relative to the root of the site.
+        icon: `${__dirname}/src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
     {
-      resolve: `gatsby-plugin-offline`,
+      resolve: `gatsby-plugin-typescript`,
       options: {
-        precachePages: [`/about-us/`, `/projects/*`],
+        isTSX: false, // defaults to false
+        jsxPragma: `React`, // defaults to "React"
+        allExtensions: false, // defaults to false
       },
     },
-    `gatsby-plugin-sitemap`,
     {
+      resolve: `gatsby-plugin-sitemap`,
       siteMetadata: {
         siteUrl: `https://expi.goes.click`,
       },
@@ -78,8 +83,9 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `./src/data/`,
+        path: `${__dirname}/src/data/`,
       },
     },
+    `gatsby-plugin-sitemap`,
   ],
 }

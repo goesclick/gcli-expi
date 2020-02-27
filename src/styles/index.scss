@@ -1,3 +1,5 @@
-html {
-  font-family: Arial, Helvetica, sans-serif;
-}
+@import "palette/color_variables";
+
+@import "palette/color_scheme_light";
+@import "palette/color_scheme_dark";
+@import "palette/color_scheme_no_preference";
