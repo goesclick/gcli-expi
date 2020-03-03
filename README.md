@@ -41,6 +41,38 @@ Upgrade all packages
   yarn upgrade
 ```
 
+## Creating a build
+
+### yarn
+
+#### 1. Initial Configuration
+
+Change the prefix of the git tag using `version-tag-prefix` and, then the git message using `version-git-message` where %s is the version string:
+
+```shell
+  yarn config set version-tag-prefix "v"
+  yarn config set version-git-message "v%s"
+  yarn config set version-sign-git-tag true
+  yarn config set version-commit-hooks true
+```
+
+#### 2. Creating a build
+
+Export licensing information from third-party packages
+
+```shell
+  yarn licenses generate-disclaimer > VENDOR-LICENSES
+```
+
+Check integrity of vendor files
+
+```shell
+  yarn install --check-files
+  yarn check --integrity
+  yarn check --verify-tree
+
+```
+
 ## Appendix
 
 ### 1. Good Resources
