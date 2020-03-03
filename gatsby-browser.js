@@ -4,7 +4,7 @@
  * See: https://www.gatsbyjs.org/docs/browser-apis/
  */
 
-import "./src/styles/index.scss"
+// import "./src/styles/index.scss"
 
 exports.shouldUpdateScroll = () => {
   return false

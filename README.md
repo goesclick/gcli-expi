@@ -6,10 +6,9 @@ Expi (Expanded Information) can show extra track information such as BPM, Key, a
 
 ## Dependencies
 
-- Gatsby.js
-- Reac.js
 - Typography.js
 - [chroma-js](https://github.com/gka/chroma.js/)
+- [gatsby-plugin-transitions](https://www.gatsbyjs.org/packages/gatsby-plugin-transitions/)
 
 ## Local Development
 

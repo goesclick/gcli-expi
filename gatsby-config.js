@@ -23,6 +23,12 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-plugin-layout`,
+      options: {
+        component: require.resolve(`./src/layouts/index.js`),
+      },
+    },
+    {
       resolve: `gatsby-plugin-typography`,
       options: {
         pathToConfigModule: `src/utils/typography`,
@@ -42,14 +48,6 @@ module.exports = {
         theme_color: `#663399`,
         display: `minimal-ui`,
         icon: `${__dirname}/src/images/gatsby-icon.png`, // This path is relative to the root of the site.
-      },
-    },
-    {
-      resolve: `gatsby-plugin-typescript`,
-      options: {
-        isTSX: false, // defaults to false
-        jsxPragma: `React`, // defaults to "React"
-        allExtensions: false, // defaults to false
       },
     },
     {
@@ -87,6 +85,6 @@ module.exports = {
         path: `${__dirname}/src/data/`,
       },
     },
-    "gatsby-plugin-layout",
+    `gatsby-plugin-transitions`,
   ],
 }

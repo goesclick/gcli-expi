@@ -1,14 +1,18 @@
 import React from "react"
 import { Link } from "gatsby"
 
-import Layout from "../components/layout"
 // import Image from "../components/image"
 import SEO from "../components/seo"
 
 const IndexPage = () => (
-  <Layout>
+  <section>
     <SEO title="Goes.CLiCK" />
-    <div className="radial-menu"></div>
+    {/* <div className="radial-menu"></div> */}
+    <Link to="/page-2/">Go to page 2</Link>
+    <Link to="/blog/">Go to my blog</Link> <br />
+    <Link to="/about/">Go to my about page</Link> <br />
+    <Link to="/contact/">Go to my contact page</Link> <br />
+    <Link to="/404/">404</Link> <br />
     <section></section>
     <h1>Goes.CLiCK</h1>
     <p>
@@ -47,8 +51,7 @@ const IndexPage = () => (
     {/* <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
       <Image />
     </div> */}
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
+  </section>
 )
 
 export default IndexPage
