@@ -87,6 +87,6 @@ module.exports = {
         path: `${__dirname}/src/data/`,
       },
     },
-    `gatsby-plugin-sitemap`,
+    "gatsby-plugin-layout",
   ],
 }

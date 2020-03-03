@@ -5,3 +5,7 @@
  */
 
 import "./src/styles/index.scss"
+
+exports.shouldUpdateScroll = () => {
+  return false
+}

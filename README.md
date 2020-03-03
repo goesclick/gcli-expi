@@ -51,18 +51,12 @@ Change the prefix of the git tag using `version-tag-prefix` and, then the git me
 
 ```shell
   yarn config set version-tag-prefix "v"
-  yarn config set version-git-message "v%s"
-  yarn config set version-sign-git-tag true
+  yarn config set version-git-message "Bumped version to v%s."
+  yarn config set version-sign-git-tag false
   yarn config set version-commit-hooks true
 ```
 
 #### 2. Creating a build
-
-Export licensing information from third-party packages
-
-```shell
-  yarn licenses generate-disclaimer > VENDOR-LICENSES
-```
 
 Check integrity of vendor files
 
@@ -71,6 +65,29 @@ Check integrity of vendor files
   yarn check --integrity
   yarn check --verify-tree
 
+```
+
+Export licensing information from third-party packages
+
+```shell
+  yarn licenses generate-disclaimer > VENDOR-LICENSES
+```
+
+Bumping the version
+
+```shell
+  yarn version --major
+  # v1.2.3 -> v2.0.0
+
+  yarn version --minor
+  # v0.1.3 -> v0.2.0
+
+  yarn version --patch
+  # v0.1.3 -> v0.1.4
+
+  # Bumps the build number,
+  yarn version --prerelease
+  # e.g. v0.1.4-0 -> v0.1.4-1
 ```
 
 ## Appendix

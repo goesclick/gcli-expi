@@ -2,9 +2,9 @@ import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
 
-const Header = ({ siteTitle }) => (
+const GlobalNavigationMenu = ({ siteTitle }) => (
   <header>
-    <nav>
+    <nav className="menu site-navigation traditional">
       <h1 className="site-title">
         <Link to="/">{siteTitle}</Link>
       </h1>
@@ -12,12 +12,12 @@ const Header = ({ siteTitle }) => (
   </header>
 )
 
-Header.propTypes = {
+GlobalNavigationMenu.propTypes = {
   siteTitle: PropTypes.string,
 }
 
-Header.defaultProps = {
+GlobalNavigationMenu.defaultProps = {
   siteTitle: ``,
 }
 
-export default Header
+export default GlobalNavigationMenu
