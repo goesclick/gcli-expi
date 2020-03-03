@@ -2,7 +2,7 @@
   "name": "goesclick-expi",
   "private": true,
   "description": "Expi [Expanded Information] can show extra track information such as BPM, Key, and other interesting metrics, as well as find songs based on the provided data.",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "author": "Patrick Schreiber <patrick@goes.click>",
   "publisher": "Goes CLiCK",
   "license": "CC-BY-NC-4.0",
