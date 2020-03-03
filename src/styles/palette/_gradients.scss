@@ -1,10 +1,9 @@
 $cubic-bezier: linear-gradient(
-    to bottom,
-    hsla(355, 100%, 45%, 1),
-    cubic-bezier(0.66, 0.4, 1, 0.5),
-    hsla(43, 97%, 60%, 1)
-  );
-};
+  to bottom,
+  hsla(355, 100%, 45%, 1),
+  cubic-bezier(0.66, 0.4, 1, 0.5),
+  hsla(43, 97%, 60%, 1)
+);
 
 $cubic-bezier-fallback: linear-gradient(
   to bottom,

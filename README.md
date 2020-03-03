@@ -23,7 +23,23 @@ Expi (Expanded Information) can show extra track information such as BPM, Key, a
 
 2. **Adding a Package**
 
-`yarn add <package name>`
+```shell
+  yarn add <package name>
+```
+
+3. **Upgrading Packages**
+
+Upgrade an individual package
+
+```shell
+  yarn upgrade <package name>
+```
+
+Upgrade all packages
+
+```shell
+  yarn upgrade
+```
 
 ## Appendix
 
