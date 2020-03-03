@@ -1,10 +1,5 @@
-@import "palette/color_variables";
+@import "palette/color-variables";
 @import "palette/gradients";
 
-@import "palette/color_scheme_light";
-@import "palette/color_scheme_dark";
-@import "palette/color_scheme_no_preference";
-
-aside {
-  background-color: $cubic-bezier;
-}
+@import "palette/color-scheme-light";
+@import "palette/color-scheme-dark";
