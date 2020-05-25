@@ -1,0 +1,567 @@
+# API
+
+## Requests
+
+### **GET** - /authorize
+
+#### Description
+To have the end user approve your app for access to their Spotify data and features, or to have your app fetch data from Spotify, you need to authorize your application.
+
+Your app can be authorized by Spotify in two ways:
+
+App Authorization: Spotify authorizes your app to access the Spotify Platform (APIs, SDKs and Widgets).
+User Authorization: Spotify, as well as the user, grant your app permission to access and/or modify the user’s own data. For information about User Authentication, see User Authentication with OAuth 2.0. Calls to the Spotify Web API require authorization by your application user. To get that authorization, your application generates a call to the Spotify Accounts Service /authorize endpoint, passing along a list of the scopes for which access permission is sought.
+Obtaining Authorization
+Making authorized requests to the Spotify platform requires that you are granted permission to access data.
+
+In accordance with RFC-6749, 3 parties are involved in the authorization process:
+
+Server: the Spotify server
+Client: your application
+Resource: the end user data and controls
+
+#### CURL
+
+```sh
+curl -X GET "https://accounts.spotify.com/authorize\
+?client_id=8a471d92e3e04423abe5e8etc...&response_type=code\
+&redirect_uri=localhost%3A3000%2Fnoscope&state=DgMObbLr5T5Lb5rPeo472s6xFjpyNAIc\
+&scope=user-read-private%20user-read-email&show_dialog=$show_dialog" \
+    -H "Host: localhost:3000" \
+    -H "Content-Type: application/x-www-form-urlencoded; charset=utf-8" \
+    --data-raw "$body"
+```
+
+#### Query Parameters
+
+- **client_id** should respect the following schema:
+
+```json
+{
+  "type": "string",
+  "enum": [
+    "*snip* your rest app client_id"
+  ],
+  "default": "*snip* your rest app client_id"
+}
+```
+- **response_type** should respect the following schema:
+
+```json
+{
+  "type": "string",
+  "enum": [
+    "code"
+  ],
+  "default": "code"
+}
+```
+- **redirect_uri** should respect the following schema:
+
+```json
+{
+  "type": "string",
+  "enum": [
+    "localhost:3000/noscope"
+  ],
+  "default": "localhost:3000/noscope"
+}
+```
+- **state** should respect the following schema:
+
+```json
+{
+  "type": "string",
+  "enum": [
+    "DgMObbLr5T5Lb5rPeo472s6xFetc..."
+  ],
+  "default": "DgMObbLr5T5Lb5rPeo4etc..."
+}
+```
+- **scope** should respect the following schema:
+
+```json
+{
+  "type": "string",
+  "enum": [
+    "user-read-private user-read-email"
+  ],
+  "default": "user-read-private user-read-email"
+}
+```
+- **show_dialog** should respect the following schema:
+
+```json
+{
+  "type": "string",
+  "enum": [
+    ""
+  ]
+}
+```
+
+#### Header Parameters
+
+- **Host** should respect the following schema:
+
+```json
+{
+  "type": "string",
+  "default": "localhost:3000"
+}
+```
+- **Content-Type** should respect the following schema:
+
+```json
+{
+  "type": "string",
+  "enum": [
+    "application/x-www-form-urlencoded; charset=utf-8"
+  ],
+  "default": "application/x-www-form-urlencoded; charset=utf-8"
+}
+```
+
+#### Body Parameters
+
+- **body** should respect the following schema:
+
+```json
+{
+  "type": "string",
+  "default": ""
+}
+```
+
+### **POST** - /api/token
+
+#### Description
+When the authorization code has been received, you will need to exchange it with an access token by making a POST request to the Spotify Accounts service, this time to its /api/token endpoint:
+
+`POST https://accounts.spotify.com/api/token`
+
+The body of this POST request must contain the following parameters encoded as `application/x-www-form-urlencoded` as defined in the OAuth 2.0 specification:
+
+#### CURL
+
+```sh
+curl -X POST "https://accounts.spotify.com/api/token" \
+    -H "Authorization: $Authorization" \
+    -H "Content-Type: application/x-www-form-urlencoded" \
+    --data-raw "grant_type"="authorization_code" \
+    --data-raw "code"="$code" \
+    --data-raw "redirect_uri "="localhost:3000/noscope"
+```
+
+#### Header Parameters
+
+- **Authorization** should respect the following schema:
+
+```json
+{
+  "type": "string",
+  "enum": [
+    ""
+  ]
+}
+```
+- **Content-Type** should respect the following schema:
+
+```json
+{
+  "type": "string",
+  "enum": [
+    "application/x-www-form-urlencoded"
+  ],
+  "default": "application/x-www-form-urlencoded"
+}
+```
+
+#### Body Parameters
+
+- **grant_type** should respect the following schema:
+
+```json
+{
+  "type": "string",
+  "enum": [
+    "authorization_code"
+  ],
+  "default": "authorization_code"
+}
+```
+- **code** should respect the following schema:
+
+```json
+{
+  "type": "string",
+  "enum": [
+    ""
+  ]
+}
+```
+- **redirect_uri ** should respect the following schema:
+
+```json
+{
+  "type": "string",
+  "enum": [
+    "localhost:3000/noscope"
+  ],
+  "default": "localhost:3000/noscope"
+}
+```
+
+### **POST** - /api/token
+
+#### Description
+Access tokens are deliberately set to expire after a short time, after which new tokens may be granted by supplying the refresh token originally obtained during the authorization code exchange.
+
+The request is sent to the token endpoint of the Spotify Accounts service:
+
+`POST https://accounts.spotify.com/api/token`
+
+The body of this POST request must contain the following parameters encoded in `application/x-www-form-urlencoded` as defined in the OAuth 2.0 specification:
+
+#### CURL
+
+```sh
+curl -X POST "https://accounts.spotify.com/api/token" \
+    -H "Content-Type: application/x-www-form-urlencoded" \
+    --data-raw "grant_type"="refresh_token" \
+    --data-raw "refresh_token"="$refresh_token" \
+-u "8a471d92e3e04423abe5e8etc...":"3896f7744f1648bfetc..."
+```
+
+#### Header Parameters
+
+- **Content-Type** should respect the following schema:
+
+```json
+{
+  "type": "string",
+  "enum": [
+    "application/x-www-form-urlencoded"
+  ],
+  "default": "application/x-www-form-urlencoded"
+}
+```
+
+#### Body Parameters
+
+- **grant_type** should respect the following schema:
+
+```json
+{
+  "type": "string",
+  "enum": [
+    "refresh_token"
+  ],
+  "default": "refresh_token"
+}
+```
+- **refresh_token** should respect the following schema:
+
+```json
+{
+  "type": "string",
+  "enum": [
+    ""
+  ]
+}
+```
+
+#### Security
+
+- Basic Authentication
+  - **username**: 8a471d92e3e0442etc...
+  - **password**: 3896f7744f1648bfb22e61dd7e0etc...
+
+### **POST** - /api/token
+
+#### Description
+The request is sent to the `/api/token` endpoint of the Accounts service:
+
+`POST https://accounts.spotify.com/api/token`
+
+The body of this POST request must contain the following parameters encoded in `application/x-www-form-urlencoded` as defined in the OAuth 2.0 specification.
+
+The header of this POST request must contain the `Authorization` parameter which is a
+Base 64 encoded string that contains the client ID and client secret key. The field must have the format: `Authorization: Basic <base64 encoded client_id:client_secret>`
+
+Example
+
+```shell
+curl -X "POST" -H "Authorization: Basic ZjM4ZjAw...WY0MzE=" -d grant_type=client_credentials https://accounts.spotify.com/api/token
+```
+
+#### CURL
+
+```sh
+curl -X POST "https://accounts.spotify.com/api/token" \
+    -H "Content-Type: application/x-www-form-urlencoded" \
+    --data-raw "grant_type"="client_credentials" \
+-u "8a471d92e3e04423abe5e8etc...":"3896f7744f1648bfetc..."
+```
+
+#### Header Parameters
+
+- **Content-Type** should respect the following schema:
+
+```json
+{
+  "type": "string",
+  "enum": [
+    "application/x-www-form-urlencoded"
+  ],
+  "default": "application/x-www-form-urlencoded"
+}
+```
+
+#### Body Parameters
+
+- **grant_type** should respect the following schema:
+
+```json
+{
+  "type": "string",
+  "enum": [
+    "client_credentials"
+  ],
+  "default": "client_credentials"
+}
+```
+
+#### Security
+
+- Basic Authentication
+  - **username**: 8a471d92e3e04423abe5e8etc...
+  - **password**: 3896f7744f1648bfetc...
+
+### **GET** - /v1/audio-analysis/0oSt6wxDhUTFA4sBhl48a0
+
+#### CURL
+
+```sh
+curl -X GET "https://api.spotify.com/v1/audio-analysis/0oSt6wxDhUTFA4sBhl48a0\
+?si=orBrMW-mRYquVRCCfe9_jQ"
+```
+
+#### Query Parameters
+
+- **si** should respect the following schema:
+
+```json
+{
+  "type": "string",
+  "enum": [
+    "orBrMW-mRYquVRCCfe9_jQ"
+  ],
+  "default": "orBrMW-mRYquVRCCfe9_jQ"
+}
+```
+
+#### Security
+
+- OAuth2 Authentication
+  - **flow**: password
+  - **tokenUrl**: <https://accounts.spotify.com/api/token>
+  - **scopes**: List []
+- OAuth2 Authentication
+  - **scopes**: List []
+
+### **GET** - /v1/audio-features/0oSt6wxDhUTFA4sBhl48a0
+
+#### CURL
+
+```sh
+curl -X GET "https://api.spotify.com/v1/audio-features/0oSt6wxDhUTFA4sBhl48a0\
+?si=Vs0sQ1eaR8eaUUeb0O82vQ"
+```
+
+#### Query Parameters
+
+- **si** should respect the following schema:
+
+```json
+{
+  "type": "string",
+  "enum": [
+    "Vs0sQ1eaR8eaUUeb0O82vQ"
+  ],
+  "default": "Vs0sQ1eaR8eaUUeb0O82vQ"
+}
+```
+
+#### Security
+
+- OAuth2 Authentication
+  - **flow**: password
+  - **tokenUrl**: https://accounts.spotify.com/api/token
+  - **scopes**: List []
+- OAuth2 Authentication
+  - **scopes**: List []
+
+### **GET** - /v1/tracks/5WXzljd68vlJL83jHUFcCo
+
+#### CURL
+
+```sh
+curl -X GET "https://api.spotify.com/v1/tracks/5WXzljd68vlJL83jHUFcCo\
+?si=2dQr9BfVQ66wFOLYnrs01w"
+```
+
+#### Query Parameters
+
+- **si** should respect the following schema:
+
+```json
+{
+  "type": "string",
+  "enum": [
+    "2dQr9BfVQ66wFOLYnrs01w"
+  ],
+  "default": "2dQr9BfVQ66wFOLYnrs01w"
+}
+```
+
+#### Security
+
+- OAuth2 Authentication
+  - **flow**: password
+  - **tokenUrl**: https://accounts.spotify.com/api/token
+  - **scopes**: List []
+- OAuth2 Authentication
+  - **scopes**: List []
+
+### **GET** - /v1/artists/4aKdmOXdUKX07HVd3sGgzw
+
+#### CURL
+
+```sh
+curl -X GET "https://api.spotify.com/v1/artists/4aKdmOXdUKX07HVd3sGgzw"
+```
+
+#### Security
+
+- OAuth2 Authentication
+  - **flow**: password
+  - **tokenUrl**: https://accounts.spotify.com/api/token
+  - **scopes**: List []
+- OAuth2 Authentication
+  - **scopes**: List []
+
+### **GET** - /v1/artist/4aKdmOXdUKX07HVd3sGgzw
+
+#### CURL
+
+```sh
+curl -X GET "https://api.spotify.com/v1/artist/4aKdmOXdUKX07HVd3sGgzw"
+```
+
+#### Security
+
+- OAuth2 Authentication
+  - **flow**: password
+  - **tokenUrl**: https://accounts.spotify.com/api/token
+  - **scopes**: List []
+- OAuth2 Authentication
+  - **scopes**: List []
+
+### **GET** - /v1/search&q=sebastiAn
+
+#### CURL
+
+```sh
+curl -X GET "https://api.spotify.com/v1/search&q=sebastiAn\
+?q=$q&type=artist%2Calbum%2Ctrack%2Cplaylist&market=$market&limit=$limit\
+&offset=$offset&include_external=audio"
+```
+
+#### Query Parameters
+
+- **q** should respect the following schema:
+
+```json
+{
+  "type": "string",
+  "enum": [
+    ""
+  ]
+}
+```
+- **type** should respect the following schema:
+
+```json
+{
+  "type": "string",
+  "enum": [
+    "artist,album,track,playlist"
+  ],
+  "default": "artist,album,track,playlist"
+}
+```
+- **market** should respect the following schema:
+
+```json
+{
+  "type": "string",
+  "enum": [
+    ""
+  ]
+}
+```
+- **limit** should respect the following schema:
+
+```json
+{
+  "type": "string",
+  "enum": [
+    ""
+  ]
+}
+```
+- **offset** should respect the following schema:
+
+```json
+{
+  "type": "string",
+  "enum": [
+    ""
+  ]
+}
+```
+- **include_external** should respect the following schema:
+
+```json
+{
+  "type": "string",
+  "enum": [
+    "audio"
+  ],
+  "default": "audio"
+}
+```
+
+#### Security
+
+- OAuth2 Authentication
+  - **flow**: password
+  - **tokenUrl**: https://accounts.spotify.com/api/token
+  - **scopes**: List []
+- OAuth2 Authentication
+  - **scopes**: List []
+
+## References
+
+1. [Spotify REST API Documentation](https://developer.spotify.com/documentation/web-api/reference/)
+1. [PAW Documentation](https://paw.cloud/docs/)
+
+## Contributing
+
+This reference is incomplete and sparse, feel free to create a PR to flesh it
+out, if you so desire.
+
+### Contributors
+
+#### 1. Patrick Schreiber <im@pats.fyi>
